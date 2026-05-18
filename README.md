@@ -1,21 +1,16 @@
-# YewChat 💬
+# Reflection Notes
 
-> Source code for [Let’s Build a Websocket Chat Project With Rust and Yew 0.19 🦀](https://fsjohnny.medium.com/lets-build-a-websockets-project-with-rust-and-yew-0-19-60720367399f)
+![alt text](image.png)
 
-## Install
+![alt text](image-2.png)
 
-1. Install the required toolchain dependencies:
-   ```npm i```
+![alt text](image-1.png)
 
-2. Follow the YewChat post!
+## Cara Run
 
-## Branches
+### 1. Clone backend (websocket) dari `https://github.com/jtordgeman/SimpleWebsocketServer.git`
 
-This repository is divided to branches that correspond to the blog post sections:
+### 2. Jalankan `npm i` dan `npm start` pada websocket.
 
-* main - The starter code.
-* routing - The code at the end of the Routing section.
-* components-part1 - The code at the end of the Components-Phase 1 section.
-* websockets - The code at the end of the Hello Websockets! section.
-* components-part2 - The code at the end of the Components-Phase 2 section.
-* websockets-part2 - The code at the end of the WebSockets-Phase 2 section.
+### 3. Jalankan `npm i` dan `npm start` pada repo ini untuk menjalankan client di `localhost:8000`.
+
