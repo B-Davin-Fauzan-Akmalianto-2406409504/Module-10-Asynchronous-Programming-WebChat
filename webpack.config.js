@@ -28,4 +28,9 @@ module.exports = {
     experiments: {
         asyncWebAssembly: true,
     },
+    performance: {
+        maxAssetSize: 512000,  // Naikkan batas menjadi 500 KiB
+        maxEntrypointSize: 512000,
+        hints: 'warning'   
+    }
 };

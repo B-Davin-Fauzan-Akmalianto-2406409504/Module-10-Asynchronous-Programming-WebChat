@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use web_sys::HtmlInputElement;
+use web_sys::{HtmlInputElement, js_sys};
 use yew::prelude::*;
 use yew_agent::{Bridge, Bridged};
 use crate::services::event_bus::EventBus;
@@ -15,6 +15,7 @@ pub enum Msg {
 struct MessageData {
     from: String,
     message: String,
+    time: u64,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -46,6 +47,16 @@ pub struct Chat {
     messages: Vec<MessageData>,
     _producer: Box<dyn Bridge<EventBus>>,
 }
+
+fn format_time(millis: u64) -> String {
+    let date = js_sys::Date::new(&wasm_bindgen::JsValue::from_f64(millis as f64));
+    
+    let jam = format!("{:02}", date.get_hours());
+    let menit = format!("{:02}", date.get_minutes());
+    
+    format!("{}:{}", jam, menit)
+}
+
 impl Component for Chat {
     type Message = Msg;
     type Properties = ();
@@ -166,9 +177,9 @@ impl Component for Chat {
                             self.messages.iter().map(|m| {
                                 let user = self.users.iter().find(|u| u.name == m.from).unwrap();
                                 html!{
-                                    <div class="flex items-end w-3/6 bg-gray-100 m-8 rounded-tl-lg rounded-tr-lg rounded-br-lg ">
+                                    <div class="flex items-center w-3/6 bg-gray-100 m-8 rounded-tl-lg rounded-tr-lg rounded-br-lg ">
                                         <img class="w-8 h-8 rounded-full m-3" src={user.avatar.clone()} alt="avatar"/>
-                                        <div class="p-3">
+                                        <div class="p-3 w-full">
                                             <div class="text-sm">
                                                 {m.from.clone()}
                                             </div>
@@ -178,6 +189,9 @@ impl Component for Chat {
                                                 } else {
                                                     {m.message.clone()}
                                                 }
+                                            </div>
+                                            <div class="text-[10px] text-gray-400 text-right mt-1">
+                                                { format_time(m.time) }
                                             </div>
                                         </div>
                                     </div>

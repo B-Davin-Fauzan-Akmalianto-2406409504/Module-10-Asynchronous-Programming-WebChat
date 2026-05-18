@@ -6,6 +6,12 @@
 
 ![alt text](image-1.png)
 
+## 3.2 Add some creativities to the webclient
+
+![alt text](image-3.png)
+
+Saya menambahkan timestamp pada chat. 
+
 ## Cara Run
 
 ### 1. Clone backend (websocket) dari `https://github.com/jtordgeman/SimpleWebsocketServer.git`
